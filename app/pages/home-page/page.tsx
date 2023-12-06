@@ -3,8 +3,7 @@ import Navbar from '@/app/components/Navbar'
 import ProductSlider from '@/app/components/ProductSlider'
 import { Product } from '@/app/types/product';
 
-
-
+// Ok this is awesome
 const HomePage: React.FC = () => {
   const products: Product[] = [
     {
