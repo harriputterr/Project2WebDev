@@ -28,3 +28,16 @@
 .product-slider-parent-div{
   height: 408px;
 }
+
+.filter-toggle{
+  font-family: Arial, sans-serif;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+}

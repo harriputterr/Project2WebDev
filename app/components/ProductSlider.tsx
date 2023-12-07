@@ -56,11 +56,11 @@ export default class ProductSlider extends Component<ProductSliderProps> {
 
     // image height: 330px
     return (
-      <div className="bg-slate-400 space-x-" style={{ padding: '80px' }}>
+      <div className="primary-color" style={{ padding: '80px' }}>
         <Slider  {...settings}>
           {this.props.products.map(product => (
             <div className=" border-2 product-slider-parent-div object-contain" key={product.id} style={{ padding: '10px' }}>
-              <div className=" bg-neutral-600 w-fit object-contain ">
+              <div className=" w-fit object-contain ">
                 <Image src={img} alt={product.name}  height='330' width='330' />
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
