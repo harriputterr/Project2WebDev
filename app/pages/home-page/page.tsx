@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '@/app/components/Navbar'
 import ProductSlider from '@/app/components/ProductSlider'
-import { Product } from '@/app/types/product';
+import {Product}  from '@/app/types/item';
 
 // Ok this is awesome
 const HomePage: React.FC = () => {

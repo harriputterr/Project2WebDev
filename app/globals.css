@@ -29,7 +29,7 @@
   height: 408px;
 }
 
-.filter-toggle{
+.filter-toggle {
   font-family: Arial, sans-serif;
   border: none;
   background-color: transparent;
@@ -37,7 +37,62 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100px;
+  width: 200px;
   padding: 5px 10px;
   transition: all 0.3s ease;
 }
+
+.filter-toggle:focus {
+  outline: none;
+}
+
+.filter-toggle-label {
+  font-size: 16px;
+  margin-right: auto;
+}
+
+.filter-toggle-icon {
+  font-size: 24px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+/* When hovering over the button, the plus sign turns into a minus sign */
+.filter-toggle:hover .filter-toggle-icon {
+  transform: rotate(180deg); /* This creates a rotation effect */
+}
+
+/* Alternatively, if you want the + to turn into a - without rotation effect: */
+/* .filter-toggle:hover .filter-toggle-icon::before {
+  content: "-";
+} */
+
+/* Styling for the line when the filter is collapsed */
+.filter-toggle-collapsed {
+  border-top: 1px solid #000;
+  padding-top: 18px;
+}
+
+/* Styling for the line when the filter is expanded */
+.filter-toggle-expanded {
+  border-top: 1px solid #000;
+  padding-top: 18px;
+  transform: rotate(180deg); /* Flip the line to show "-" */
+}
+
+/* The pricing labels */
+.filter-price-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.range-bar{
+  position: relative;
+  display: block;
+  height: 2px;
+  margin: 0 10px 0 3px;
+  cursor: pointer;
+  background: black;
+}
+
