@@ -21,7 +21,7 @@ export default function DisplayItems() {
     }, []);
 
     const handleItemClick = (id: string) =>{
-        router.push(`/pages/view-item?id=${id}`)
+        router.push(`/pages/add-to-cart?id=${id}`)
     }
 
     return (

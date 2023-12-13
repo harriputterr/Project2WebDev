@@ -1,10 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 export default function LoginPage() {
   const [error, setError] = useState("");
+  const searchParams = useSearchParams();
   const router = useRouter();
   const [data, setData] = useState({
     email: "",
@@ -23,13 +24,18 @@ export default function LoginPage() {
         ...data,
         redirect: false,
       });
-      setError("Invalid Credentials.")
-      if (res?.ok){
+      
+      const callbackUrl = searchParams.get('callbackUrl');
+      console.log(callbackUrl)
+      if (res?.ok && !callbackUrl){
         router.push('/pages/home-page')
+      }
+      else if (callbackUrl){
+        router.push(callbackUrl);
       }
     } catch (error) {
       console.log(error);
-      
+
     }
   };
   return (

@@ -3,9 +3,12 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { PlusIcon, MinusIcon } from '@heroicons/react/solid';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useSession } from 'next-auth/react'
 import Item from '@/app/types/item'
 
+
 export default function Product() {
+  const {data: session }  = useSession();
   const router = useRouter();
   const [item, setItem] = useState<Item | null>(null);
   const searchParams = useSearchParams();
@@ -21,14 +24,23 @@ export default function Product() {
       setItem(data);
     };
     getItem();
-  })
+  },[])
 
   const handleQuantityChange = (event: any) => {
     setQuantity(event.target.value);
   };
 
-  const addToCart = () => {
-    
+  const addToCart = async (userId: string | undefined, itemId: string | null, quantity: number) => {
+    const response = await fetch('/api/add-to-cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userId, itemId, quantity}),
+    });
+    if (response.ok){
+      alert("Item added successfully");
+    }
   };
 
   return (
@@ -79,7 +91,7 @@ export default function Product() {
             </button>
           </div>
           <button
-            onClick={addToCart}
+            onClick={()=> addToCart(session?.user.id, itemId, quantity)}
             className="bg-black text-white py-2 px-4 rounded my-4"
           >
             Add to Cart

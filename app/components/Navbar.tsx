@@ -19,6 +19,7 @@ export default function Navbar() {
                     <Link href={'/'}>Contact</Link>
                     <Link href={''}>About Us</Link>
                     <Link href={'/pages/shop-page'}>Shop</Link>
+                    {session?.user.isAdmin ? <Link href={'/pages/create-item'}>Create Item</Link>: <></>}
                 </ul>
             </div>
             {session ? 

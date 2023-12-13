@@ -41,11 +41,12 @@ export const authOptions: any = {
         })
     ],
     callbacks: {
-        async jwt({ token, user }: any) {
+        async jwt({ token, user}: any) {
             return { ...token, ...user };
           },
-          async session({ session, token }: any) {
+          async session({ session, token, user}: any) {
             session.user.isAdmin = token.isAdmin;
+            session.user.id = token.id;
             return session;
           }
     },
