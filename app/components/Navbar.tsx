@@ -12,7 +12,7 @@ export default function Navbar() {
         <div className='primary-color p-10'>
             <div>
                 <div className='text-center text-5xl m-10 '>
-                    KHANGOORA
+                    ShopSphere
                 </div>
                 <ul className='flex flex-row justify-center space-x-10 '>
                     <Link href={'/pages/home-page'}>Home</Link>
