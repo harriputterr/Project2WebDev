@@ -23,7 +23,15 @@ export default function RegisterPage() {
       },
       body: JSON.stringify({ data }),
     });
-
+    if (response.ok){
+      alert("User has been registered!");
+      setData({
+        name: "",
+        email: "",
+        password: "",
+        isAdmin: false,
+      });
+    }
     const userInfo = await response.json();
     console.log(userInfo);
   };
