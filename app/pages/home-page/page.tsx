@@ -1,54 +1,30 @@
-import React from 'react'
+'use client'
 import Navbar from '@/app/components/Navbar'
 import ProductSlider from '@/app/components/ProductSlider'
-import {Product}  from '@/app/types/item';
+import Item  from '@/app/types/item';
+import { useEffect, useState } from 'react';
 
-// Ok this is awesome
+
 const HomePage: React.FC = () => {
-  const products: Product[] = [
-    {
-      id: 1,
-      name: "Product#1",
-      description: "I am a product",
-      price: "CAD 9.99",
-      image: "@/app/images/air-freshner1.webp",
-    },
-    {
-      id: 2,
-      name: "Product#2",
-      description: "I am a product",
-      price: "CAD 9.99",
-      image: "@/app/images/air-freshner1.webp",
-    },
-    {
-      id: 3,
-      name: "Product#3",
-      description: "I am a product",
-      price: "CAD 9.99",
-      image: "@/app/images/air-freshner1.webp",
-    },
-    {
-      id: 4,
-      name: "Product#4",
-      description: "I am a product",
-      price: "CAD 9.99",
-      image: "@/app/images/air-freshner1.webp",
-    },
-    {
-      id: 5,
-      name: "Product#5",
-      description: "I am a product",
-      price: "CAD 9.99",
-      image: "@/app/images/air-freshner1.webp",
-    },
-    {
-      id: 6,
-      name: "Product#6",
-      description: "I am a product",
-      price: "CAD 9.99",
-      image: "@/app/images/air-freshner1.webp",
-    },
-  ];
+  const [products, setProducts] = useState<Item[] | undefined>();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/api/display-items');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+      }
+    }
+    fetchProducts();
+  }, [])
+
+
   return (
     <div className='primary-color'>
       <Navbar />
