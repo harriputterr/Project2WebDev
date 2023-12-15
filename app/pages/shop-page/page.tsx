@@ -8,6 +8,7 @@ import DisplayItems from '@/app/components/DisplayItems'
 import {PriceProvider} from '@/app/contexts/filtered-price-state'
 import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
+import Footer from '@/app/components/Footer'
 
 export default function page() {
   const {data: session } = useSession({
@@ -19,8 +20,8 @@ export default function page() {
   return (
     <>
       <PriceProvider>
+        <Navbar />
         <div>
-          <Navbar />
           <div className='flex'>
             <FilterSideBar />
             <div className='h-screen'>

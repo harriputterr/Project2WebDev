@@ -18,6 +18,29 @@ interface ProductSliderProps {
   products: Product[];
 }
 
+function SampleNextArrow(props: any) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "grey" }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props: any) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "grey" }}
+      onClick={onClick}
+    />
+  );
+}
+
+
 export default class ProductSlider extends Component<ProductSliderProps> {
   render() {
     const settings = {
@@ -26,6 +49,8 @@ export default class ProductSlider extends Component<ProductSliderProps> {
       speed: 500,
       slidesToScroll: 1,
       slidesToShow: 4,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />,
       responsive: [
         {
           breakpoint: 1024,
@@ -57,7 +82,7 @@ export default class ProductSlider extends Component<ProductSliderProps> {
     // image height: 330px
     return (
       <div className="primary-color" style={{ padding: "80px" }}>
-        <Slider {...settings}>
+        <Slider  {...settings}>
           {this.props.products.map((product) => (
             <div
               className="product-slider-parent-div object-contain font-light text-sm"
@@ -65,7 +90,7 @@ export default class ProductSlider extends Component<ProductSliderProps> {
               style={{ padding: "10px" }}
             >
               <div className="w-fit object-contain">
-                <Image src={img} alt={product.name} height="330" width="330" />
+                <Image src={product.image} alt={product.name} height="330" width="330" />
                 <div className="p-2">
                   <h3>{product.name}</h3>
                   <p>{product.description}</p>

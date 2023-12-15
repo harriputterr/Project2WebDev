@@ -4,6 +4,7 @@ import Item from '@/app/types/item'
 import { usePriceContext } from '../contexts/filtered-price-state';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Footer from './Footer';
 
 
 export default function DisplayItems() {
@@ -54,6 +55,7 @@ export default function DisplayItems() {
                     </div>
                 </> : <>...Loading</>
             }
+            
         </div>
     )
 }
