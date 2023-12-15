@@ -5,7 +5,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-export const authOptions: any = {
+const authOptions= {
     session: {
         strategy: "jwt",
     },
@@ -14,7 +14,7 @@ export const authOptions: any = {
         CredentialsProvider({
             name: "credentials",
             credentials: {},
-            async authorize(credentials: any) {
+            async authorize(credentials) {
                 console.log(credentials);
                 if (!credentials.email || !credentials.password){
                     return null;
@@ -41,10 +41,10 @@ export const authOptions: any = {
         })
     ],
     callbacks: {
-        async jwt({ token, user}: any) {
+        async jwt({ token, user}) {
             return { ...token, ...user };
           },
-          async session({ session, token, user}: any) {
+          async session({ session, token, user}) {
             session.user.isAdmin = token.isAdmin;
             session.user.id = token.id;
             return session;
