@@ -31,8 +31,11 @@ export default function LoginPage() {
       if (res?.ok && !callbackUrl){
         router.push('/pages/home-page')
       }
-      else if (callbackUrl){
+      if (callbackUrl){
         router.push(callbackUrl);
+      }
+      if (!res?.ok){
+        setError("Invalid Credentials");
       }
     } catch (error) {
       console.log(error);
