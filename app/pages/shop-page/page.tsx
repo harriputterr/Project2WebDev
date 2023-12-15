@@ -8,15 +8,14 @@ import DisplayItems from '@/app/components/DisplayItems'
 import {PriceProvider} from '@/app/contexts/filtered-price-state'
 import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
-import Link from 'next/link'
 
-const page = () => {
+export default function page() {
   const {data: session } = useSession({
-      required: true,
-      onUnauthenticated() {
-        redirect('/pages/login-register-page?callbackUrl=/pages/shop-page')
-      },
-    });
+    required: true,
+    onUnauthenticated() {
+      redirect('/pages/login-register-page?callbackUrl=/pages/shop-page')
+    },
+  });
   return (
     <>
       <PriceProvider>
@@ -30,7 +29,6 @@ const page = () => {
                   <Image src={img} alt="Cube image" fetchPriority="high" width={1239} height={280} object-fit="contain" object-position="50% 50%" />
                 </div>
               </div>
-              <Link href={'/pages/view-cart-page'}>View Cart</Link>
               <DisplayItems />
             </div>
           </div>
@@ -40,5 +38,3 @@ const page = () => {
     </>
   )
 }
-
-export default page;

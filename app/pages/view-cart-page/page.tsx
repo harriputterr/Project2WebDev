@@ -3,10 +3,16 @@ import { useSession } from 'next-auth/react';
 import React, { ReactHTMLElement, useEffect, useState } from 'react';
 import { CartDataType } from '@/app/types/CartData'
 import { CartItemData } from '@/app/types/CartData'
+import { redirect } from 'next/navigation';
 
 
 const Cart = () => {
-  const { data: session } = useSession();
+  const {data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect('/pages/login-register-page')
+    },
+  });
   const [cart, setCart] = useState<CartDataType | null>(null);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   // The below useState is being so that we can make 
